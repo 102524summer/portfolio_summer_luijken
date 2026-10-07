@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI vs Mens — Webdesign Onderzoek</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="ocean" aria-hidden="true">
+    <span class="orb o1"></span>
+    <span class="orb o2"></span>
+    <span class="orb o3"></span>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span class="sans">AI</span> vs Mens <small>webdesign onderzoek</small></div>
+    <div class="nav-links">
+      <button class="active" data-page="home">Home</button>
+      <button data-page="vote">Stemmen</button>
+      <button data-page="results">Resultaten</button>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <main id="page-home" class="page active">
+    <div class="home glass">
+      <h1><span class="sans">AI</span> of menselijk ontwerp — wat vind jij beter?</h1>
+      <p>Bekijk 10 paren van webdesigns en stem welke je esthetisch aantrekkelijker vindt. Jouw stem wordt anoniem opgeslagen en gebruikt voor academisch onderzoek.</p>
+      <div class="home-meta">
+        <div class="home-meta-item">
+          <div class="num" id="home-total">0</div>
+          <div class="lbl">stemmen uitgebracht</div>
+        </div>
+        <div class="home-meta-item">
+          <div class="num">10</div>
+          <div class="lbl">ontwerpparen</div>
+        </div>
+        <div class="home-meta-item">
+          <div class="num">~3 min</div>
+          <div class="lbl">tijdsduur</div>
+        </div>
+      </div>
+      <div class="home-actions">
+        <button class="btn-primary" data-go="vote">Begin met stemmen</button>
+        <button class="btn-outline" data-go="results">Bekijk resultaten</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- VOTE -->
+  <main id="page-vote" class="page">
+    <div class="vote-bar">
+      <button class="btn-small" id="btn-prev">← Vorige</button>
+      <div class="vote-progress">
+        <span id="vote-label">1 / 10</span>
+        <div class="dots" id="dots"></div>
+      </div>
+      <button class="btn-small" id="btn-skip">Overslaan →</button>
+    </div>
+
+    <div class="vote-content">
+      <div class="compare">
+        <div class="design-col">
+          <div class="col-label">AI-gegenereerd</div>
+          <button type="button" class="design-img-wrap" id="card-ai" data-pick="ai">
+            <img id="img-ai" alt="AI-gegenereerd design">
+          </button>
+        </div>
+
+        <div class="vs-col">
+          <div class="vs-label">VS</div>
+        </div>
+
+        <div class="design-col">
+          <div class="col-label">Menselijk ontworpen</div>
+          <button type="button" class="design-img-wrap" id="card-human" data-pick="human">
+            <img id="img-human" alt="Menselijk ontworpen design">
+          </button>
+        </div>
+      </div>
+
+      <div class="vote-row">
+        <button class="vote-btn" data-vote="ai">AI is beter</button>
+        <button class="vote-btn" data-vote="equal">Geen voorkeur</button>
+        <button class="vote-btn" data-vote="human">Menselijk is beter</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- RESULTS -->
+  <main id="page-results" class="page">
+    <div class="results glass">
+      <h2>Resultaten</h2>
+      <p class="sub">Tussenstand op basis van uitgebrachte stemmen.</p>
+
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="n" id="r-total">0</div><div class="l">Stemmen totaal</div></div>
+        <div class="stat-cell"><div class="n" id="r-ai">—</div><div class="l">AI beter</div></div>
+        <div class="stat-cell"><div class="n" id="r-human">—</div><div class="l">Menselijk beter</div></div>
+      </div>
+
+      <div class="bar-section">
+        <h3>Verdeling</h3>
+        <div id="bars"></div>
+      </div>
+
+      <div class="results-reset">
+        <p>Wil je opnieuw stemmen?</p>
+        <button class="btn-outline" id="btn-reset">Stemmen wissen en opnieuw beginnen</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- DONE OVERLAY -->
+  <div class="overlay" id="overlay">
+    <div class="confetti-wrap" id="confetti"></div>
+    <h2>Bedankt voor je deelname</h2>
+    <p>Je hebt alle 10 voorbeelden beoordeeld. Je stemmen zijn opgeslagen.</p>
+    <div class="overlay-btns">
+      <button class="btn-primary" id="btn-overlay-results">Bekijk resultaten</button>
+      <button class="btn-outline" id="btn-overlay-reset">Opnieuw stemmen</button>
+    </div>
+  </div>
+
+  <script src="js/images.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
