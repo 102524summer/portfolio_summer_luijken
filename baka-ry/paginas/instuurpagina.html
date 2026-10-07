@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baka-Ry - Eigen Recept</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .form-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 40px;
+      background-color: #fef8fa;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-container h1 {
+      color: #5a4234;
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-family: 'Georgia', serif;
+    }
+
+    .form-container .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #5a4234;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #d4a5b5;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Arial', sans-serif;
+      box-sizing: border-box;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #c28da0;
+      background-color: #fff;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-group small {
+      color: #666;
+      font-size: 13px;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .rating-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .rating-group input {
+      width: 80px;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 15px;
+      background-color: #d4a5b5;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .submit-button:hover {
+      background-color: #c28da0;
+      transform: scale(1.02);
+    }
+
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #d4a5b5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      color: #c28da0;
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <div class="menubaritem" onclick="window.location.href='../index.html'">Home</div>
+
+      <div class="menubaritem">
+        <span onclick="window.location.href='overzicht.html'">Recepten</span>
+      </div>
+
+      <div class="active menubaritem">
+        <span>Eigen<br>recept</span>
+      </div>
+
+      <img src="../fotos/deer.png" alt="deer" class="deer">
+      <div class="brand">BAKA RY</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <span class="page-title">Eigen recept</span>
+      <span class="logo">BAKA-RY</span>
+    </header>
+
+    <div class="form-container">
+      <h1>Deel je Recept!</h1>
+      <p class="subtitle">Stuur jouw favoriete bakrecept in en inspireer anderen</p>
+
+      <div id="successMessage" class="success-message">
+        ✓ Je recept is succesvol verstuurd! Bedankt voor het delen.
+      </div>
+
+      <form id="recipeForm">
+        <div class="form-group">
+          <label for="recipeName">Recept Naam *</label>
+          <input type="text" id="recipeName" name="recipeName" required placeholder="Bijv. Chocolade Cake">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Beschrijving *</label>
+          <textarea id="description" name="description" required placeholder="Vertel iets over je recept..."></textarea>
+          <small>Geef een korte beschrijving van je dessert</small>
+        </div>
+
+        <div class="form-group">
+          <label for="ingredients">Benodigdheden *</label>
+          <textarea id="ingredients" name="ingredients" required placeholder="Bijv. eieren, bloem, suiker, chocolade"></textarea>
+          <small>Scheid ingrediënten met komma's</small>
+        </div>
+
+        <div class="form-group">
+          <label for="recipe">Recept Instructies *</label>
+          <textarea id="recipe" name="recipe" required placeholder="Stap voor stap uitleg..."></textarea>
+          <small>Beschrijf de bereidingswijze</small>
+        </div>
+
+        <div class="form-group">
+          <label for="difficulty">Moeilijkheidsgraad *</label>
+          <select id="difficulty" name="difficulty" required>
+            <option value="">Selecteer niveau</option>
+            <option value="1">1 - Heel makkelijk</option>
+            <option value="2">2 - Makkelijk</option>
+            <option value="3">3 - Gemiddeld</option>
+            <option value="4">4 - Moeilijk</option>
+            <option value="5">5 - Zeer moeilijk</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Jouw Beoordeling *</label>
+          <div class="rating-group">
+            <input type="number" id="stars" name="stars" min="1" max="5" required placeholder="1-5">
+            <span>⭐ sterren (1-5)</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl">Afbeelding URL (optioneel)</label>
+          <input type="text" id="imageUrl" name="imageUrl" placeholder="./fotos/jouw_foto.jpg">
+          <small>Link naar een foto van je creatie</small>
+        </div>
+
+        <button type="submit" class="submit-button">Verstuur Recept</button>
+        
+        <a href="overzicht.html" class="back-link">← Terug naar recepten</a>
+      </form>
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    document.getElementById('recipeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('recipeName').value,
+        details: document.getElementById('description').value,
+        benodigdheden: document.getElementById('ingredients').value,
+        recept: document.getElementById('recipe').value,
+        moeilijkheidsgraad: parseInt(document.getElementById('difficulty').value),
+        sterren: parseInt(document.getElementById('stars').value),
+        afbeelding: document.getElementById('imageUrl').value || './fotos/placeholder.jpg'
+      };
+
+      console.log('Nieuw recept ingediend:', formData);
+      
+      document.getElementById('successMessage').style.display = 'block';
+      document.getElementById('recipeForm').reset();
+      
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

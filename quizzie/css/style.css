@@ -1,0 +1,380 @@
+:root {
+    --pink: #ffe2f0;
+    --pink-link: #fbdeeb;
+    --pink-deep: #ecb3cd;
+    --mint: #e4ecdd;
+    --mint-deep: #cfdac2;
+    --cream: #fffaf5;
+    --frame: 8px;
+    --girl-w: min(24vw, 460px);
+    --naruto-w: clamp(80px, 10vw, 193px);
+    --gap: clamp(20px, 3.4vw, 60px);
+    --card-shadow: 2px 2px 15px 2px rgb(205, 197, 190);
+    --text-shadow: 1px 1px 1px rgba(135, 135, 135, 0.9);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
+    border: var(--frame) dashed var(--mint);
+    background: #fff;
+    overflow-x: hidden;
+}
+
+body.leaderboard {
+    background: var(--cream);
+}
+
+.stage {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap);
+    min-height: calc(100vh - 2 * var(--frame));
+    padding: 120px calc(var(--girl-w) + var(--gap)) 18vh var(--gap);
+}
+
+h1 {
+    margin: 0;
+    max-width: 100%;
+    color: var(--pink);
+    font-size: clamp(28px, 3.3vw, 60px);
+    line-height: 1.15;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.454);
+    text-wrap: balance;
+}
+
+.home h1,
+.info h1 {
+    font-size: clamp(36px, 4.6vw, 84px);
+}
+
+a {
+    color: var(--pink-link);
+    text-decoration-color: var(--pink-link);
+}
+
+a:hover {
+    color: var(--pink-deep);
+    text-decoration-color: var(--pink-deep);
+    transition: 0.6s;
+}
+
+.dropdown {
+    position: fixed;
+    top: 28px;
+    right: calc(var(--naruto-w) + 8px);
+    z-index: 10;
+}
+
+.dropbtn {
+    padding: 16px clamp(24px, 3vw, 56px);
+    border: none;
+    border-radius: 5px;
+    background: var(--mint);
+    color: #000;
+    font-size: clamp(16px, 1.3vw, 22px);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.dropbtn:hover {
+    background: var(--mint-deep);
+    transform: scale(1.05);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    min-width: 100%;
+    border-radius: 5px;
+    background: var(--mint);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 16px 24px;
+    color: #000;
+    font-size: clamp(16px, 1.3vw, 22px);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s ease-in-out, padding-left 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover,
+.dropdown-content a:focus-visible {
+    padding-left: 30px;
+    background: var(--mint-deep);
+    color: var(--pink-deep);
+}
+
+.card {
+    position: relative;
+    width: min(100%, 960px);
+    padding: clamp(24px, 3.4vw, 56px);
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    color: var(--pink);
+    font-size: clamp(18px, 1.55vw, 30px);
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: var(--text-shadow);
+}
+
+.card p {
+    margin: 0 0 0.9em;
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+.card .ornament {
+    margin: 1em 0 0.6em;
+}
+
+.start {
+    display: inline-block;
+}
+
+.choices {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap);
+    width: min(100%, 1000px);
+}
+
+.choices.two {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100%, 720px);
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(96px, 17vh, 190px);
+    padding: 18px 24px;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    color: var(--pink);
+    font-size: clamp(18px, 1.8vw, 32px);
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: var(--text-shadow);
+    transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.choices.two .choice {
+    min-height: clamp(110px, 20vh, 220px);
+    font-size: clamp(22px, 2.4vw, 44px);
+}
+
+.choice:hover,
+.choice:focus-visible {
+    background: var(--mint-deep);
+    color: var(--pink);
+    transform: translateY(-3px);
+}
+
+.back {
+    margin-top: calc(var(--gap) * -0.4);
+    padding: 12px 28px;
+    background: var(--mint);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--pink);
+    text-decoration: none;
+}
+
+.result {
+    width: min(100%, 900px);
+    margin: 0;
+    padding: clamp(24px, 3vw, 44px);
+    border-radius: 20px;
+    background: var(--mint-deep);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+    color: var(--pink);
+    font-size: clamp(22px, 2.3vw, 42px);
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.result p {
+    margin: 0;
+}
+
+.sticker {
+    position: absolute;
+    top: -3.2vw;
+    left: -3.2vw;
+    z-index: 3;
+    width: min(120px, 6.4vw);
+    pointer-events: none;
+}
+
+.perch-kitty {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    width: min(259px, 13.5vw);
+    transform: translate(-50%, -80%);
+    pointer-events: none;
+}
+
+.perch-kaomoji {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: min(198px, 10vw);
+    transform: translateY(-120%);
+    pointer-events: none;
+}
+
+.decor img {
+    position: fixed;
+    z-index: 1;
+    height: auto;
+    pointer-events: none;
+}
+
+.decor .decor-girl {
+    right: var(--frame);
+    bottom: var(--frame);
+    width: auto;
+    max-width: var(--girl-w);
+    max-height: 80vh;
+}
+
+.decor .decor-naruto {
+    top: calc(var(--frame) + 8px);
+    right: calc(var(--frame) + 4px);
+    width: var(--naruto-w);
+}
+
+.decor .decor-text-top {
+    top: calc(var(--frame) + 6px);
+    left: 24px;
+    max-width: 15vw;
+}
+
+.decor .decor-text-bottom {
+    right: calc(var(--girl-w) + 4vw);
+    bottom: 11vh;
+    max-width: 15vw;
+}
+
+.decor .decor-lotus-left {
+    bottom: var(--frame);
+    left: var(--frame);
+    width: clamp(110px, 12.5vw, 244px);
+}
+
+.decor .decor-lotus-right {
+    right: calc(var(--girl-w) - 2vw);
+    bottom: var(--frame);
+    width: clamp(90px, 9.6vw, 185px);
+}
+
+.decor .decor-lamb {
+    bottom: var(--frame);
+    left: var(--frame);
+    width: clamp(140px, 15vw, 300px);
+}
+
+.decor .decor-lotus-white {
+    top: 30vh;
+    left: var(--frame);
+    width: clamp(100px, 10vw, 220px);
+}
+
+.decor .decor-lotus-pink {
+    right: calc(var(--girl-w) + 4vw);
+    bottom: var(--frame);
+    width: clamp(120px, 14vw, 300px);
+}
+
+.decor .decor-kiss {
+    right: calc(var(--girl-w) - 1vw);
+    bottom: 26vh;
+    max-width: 14vw;
+}
+
+@media (max-width: 860px) {
+    :root {
+        --girl-w: 22vw;
+        --naruto-w: 80px;
+    }
+
+    .stage {
+        padding-top: 130px;
+    }
+
+    .choices {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sticker {
+        top: -28px;
+        left: -20px;
+        width: 72px;
+    }
+
+    .perch-kitty {
+        width: 130px;
+    }
+
+    .perch-kaomoji {
+        width: 100px;
+    }
+}
+
+@media (max-width: 620px) {
+    :root {
+        --girl-w: 0px;
+    }
+
+    .decor .decor-girl,
+    .decor .decor-text-bottom,
+    .decor .decor-lotus-right,
+    .decor .decor-lotus-pink,
+    .decor .decor-kiss {
+        display: none;
+    }
+
+    .stage {
+        padding-bottom: 12vh;
+    }
+}

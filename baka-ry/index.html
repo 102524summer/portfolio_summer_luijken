@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baka-Ry - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .welcome-section {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fef8fa;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .welcome-section h1 {
+      color: #5a4234;
+      font-size: 42px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-family: 'Georgia', serif;
+    }
+
+    .welcome-section p {
+      color: #333;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      text-align: justify;
+    }
+
+    .team-intro {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      border-left: 5px solid #d4a5b5;
+      margin-top: 30px;
+    }
+
+    .team-intro h2 {
+      color: #d4a5b5;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .team-member {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #fce4ec;
+      border-radius: 8px;
+    }
+
+    .team-member strong {
+      color: #5a4234;
+      font-size: 20px;
+    }
+
+    .team-member span {
+      color: #666;
+      font-style: italic;
+    }
+
+    .cta-button {
+      display: block;
+      width: 250px;
+      margin: 40px auto 0;
+      padding: 15px 30px;
+      background-color: #d4a5b5;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .cta-button:hover {
+      background-color: #c28da0;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <div class="active">
+      <div class="menubaritem" onclick="window.location.href='index.html'">Home</div>
+      </div>
+
+      <div class="menubaritem" onclick="window.location.href='paginas/overzicht.html'">Recepten</div>
+
+      <div class="eigen menubaritem" onclick="window.location.href='paginas/instuurpagina.html'">Eigen<br>recept</div>
+      
+      <img src="fotos/deer.png" alt="deer" class="deer">
+      <div class="brand">BAKA RY</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <span class="page-title">homepage</span>
+      <span class="logo">BAKA-RY</span>
+    </header>
+
+    <section class="welcome-section">
+      <h1>Welkom bij Baka-Ry!</h1>
+      
+      <p>
+        Hallo en welkom op onze website! Wij zijn Faye, Summer en Soufyan, en samen hebben we deze prachtige receptenwebsite gebouwd waar je de lekkerste desserts en bakwerkjes kunt ontdekken. Of je nu een ervaren bakker bent of net begint, hier vind je voor ieder wat wils!
+      </p>
+
+      <p>
+        Ons doel is om het bakken toegankelijk en leuk te maken voor iedereen. Van eenvoudige cupcakes tot uitdagende macarons - elk recept is met zorg uitgekozen en getest. We geloven dat bakken niet alleen om het eindresultaat gaat, maar ook om het plezier van het proces en het delen van je creaties met anderen.
+      </p>
+
+      <div class="team-intro">
+        <h2>Ons Team</h2>
+        
+        <div class="team-member">
+          <strong>Summer</strong> - <span>Planning & Organisatie</span>
+          <p>Summer heeft alle projectplanningen gedaan en ervoor gezorgd dat alles op rolletjes liep. Van het uitzoeken van recepten tot het coördineren van onze taken - Summer hield alles in goede banen!</p>
+        </div>
+
+        <div class="team-member">
+          <strong>Faye</strong> - <span>Design & Styling</span>
+          <p>Faye is verantwoordelijk voor het prachtige design dat je nu ziet. Van de zachte roze kleuren tot de gebruiksvriendelijke layout - alles is met oog voor detail ontworpen om je bakavontuur zo aangenaam mogelijk te maken.</p>
+        </div>
+
+        <div class="team-member">
+          <strong>Soufyan</strong> - <span>Programmeren & Ontwikkeling</span>
+          <p>Soufyan heeft alle functionaliteiten tot leven gebracht. Van de interactieve receptenkaarten tot de instuurpagina - de technische kant van de website is met vakmanschap geprogrammeerd.</p>
+        </div>
+      </div>
+
+      <a href="./paginas/overzicht.html" class="cta-button">Bekijk Recepten</a>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baka-Ry - Recept Details</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Je CSS-stijlen hier zoals eerder gedefinieerd */
+    .detail-container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 40px;
+      background-color: #fef8fa;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .detail-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #d4a5b5;
+    }
+
+    .detail-header h1 {
+      color: #5a4234;
+      font-size: 42px;
+      margin-bottom: 15px;
+      font-family: 'Georgia', serif;
+    }
+
+    .rating-difficulty {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .rating-difficulty div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    .stars {
+      color: #ffd700;
+      font-size: 24px;
+    }
+
+    .difficulty-badge {
+      background-color: #d4a5b5;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .detail-image {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      margin: 30px auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 3px solid #d4a5b5;
+    }
+
+    .detail-section {
+      background-color: white;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      border-left: 5px solid #d4a5b5;
+    }
+
+    .detail-section h2 {
+      color: #5a4234;
+      font-size: 26px;
+      margin-bottom: 15px;
+      font-family: 'Georgia', serif;
+    }
+
+    .detail-section p {
+      color: #333;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .ingredients-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .ingredient-tag {
+      background-color: #fce4ec;
+      color: #5a4234;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid #d4a5b5;
+    }
+
+    .recipe-steps {
+      color: #333;
+      font-size: 16px;
+      line-height: 2;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #d4a5b5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #c28da0;
+      transform: scale(1.05);
+    }
+
+    .no-recipe {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .no-recipe h2 {
+      color: #666;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .detail-container {
+        padding: 20px;
+      }
+
+      .detail-header h1 {
+        font-size: 32px;
+      }
+
+      .detail-image {
+        height: 300px;
+      }
+
+      .rating-difficulty {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <div class="menubaritem" onclick="window.location.href='../index.html'">Home</div>
+      <div class="active menubaritem" onclick="window.location.href='overzicht.html'">
+        <span>Recepten</span>
+      </div>
+      <div class="eigen menubaritem" onclick="window.location.href='instuurpagina.html'">Eigen<br>recept</div>
+      <img src="../fotos/deer.png" alt="deer" class="deer">
+      <div class="brand">BAKA RY</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <span class="page-title">Recept Details</span>
+      <span class="logo">BAKA-RY</span>
+    </header>
+
+    <div id="detailContent"></div>
+  </main>
+
+  <script src="../js/details.js"></script>  <!-- Zorg ervoor dat details.js correct geladen wordt -->
+  <script>
+    // Haal de receptnaam uit de URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeName = urlParams.get('recipe');
+    
+    const detailContent = document.getElementById('detailContent');
+
+    if (recipeName && Details[recipeName]) {
+      const recipe = Details[recipeName];
+      
+      // Genereer sterren
+      const stars = '⭐'.repeat(recipe.Sterren);
+      
+      // Splits ingrediënten
+      const ingredients = recipe.Benodigdheden.split(',').map(i => i.trim());
+      
+      detailContent.innerHTML = `
+        <div class="detail-container">
+          <div class="detail-header">
+            <h1>${recipeName}</h1>
+            <div class="rating-difficulty">
+              <div>
+                <span class="stars">${stars}</span>
+                <span>${recipe.Sterren}/5</span>
+              </div>
+              <div>
+                <span>Moeilijkheid:</span>
+                <span class="difficulty-badge">${recipe.Moeilijkheidsgraad}/5</span>
+              </div>
+            </div>
+          </div>
+
+          <img src="${recipe.Afbeelding}" alt="${recipeName}" class="detail-image" 
+               onerror="this.style.display='none'">
+
+          <div class="detail-section">
+            <h2>Over dit recept</h2>
+            <p>${recipe.Details}</p>
+          </div>
+
+          <div class="detail-section">
+            <h2>Benodigdheden</h2>
+            <div class="ingredients-list">
+              ${ingredients.map(ing => `<span class="ingredient-tag">${ing}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h2>Bereidingswijze</h2>
+            <div class="recipe-steps">${recipe.Recept}</div>
+          </div>
+
+          <a href="overzicht.html" class="back-button">← Terug naar overzicht</a>
+        </div>
+      `;
+    } else {
+      detailContent.innerHTML = `
+        <div class="detail-container">
+          <div class="no-recipe">
+            <h2>😕 Recept niet gevonden</h2>
+            <p>Het recept dat je zoekt bestaat niet of is verwijderd.</p>
+            <a href="overzicht.html" class="back-button">Terug naar overzicht</a>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
