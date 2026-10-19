@@ -19,6 +19,26 @@
   var rnd = function (a, b) { return a + Math.random() * (b - a); };
   var lerp = function (a, b, t) { return a + (b - a) * t; };
 
+
+  /* ---------- light / dark ---------- */
+  (function () {
+    function cur() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+    function paint() {
+      var dark = cur() === 'dark';
+      SL.qa('.theme').forEach(function (b) { b.setAttribute('aria-pressed', dark ? 'true' : 'false'); b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'); });
+      var m = d.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', dark ? '#141630' : '#F2EEE8');
+    }
+    paint();
+    d.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('.theme'); if (!b) return;
+      var next = cur() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sl-theme', next); } catch (_) {}
+      paint();
+      window.dispatchEvent(new CustomEvent('themechange', { detail: next }));
+    });
+  })();
+
   /* ---------- twinkle: every star gets its own rhythm ---------- */
   SL.qa('.tw').forEach(function (s) { s.style.setProperty('--d', (-rnd(0, 5)).toFixed(2) + 's'); s.style.setProperty('--t', rnd(2.8, 5.2).toFixed(2) + 's'); });
 

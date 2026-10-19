@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/ui/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/unifrakturmaguntia-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<script>document.documentElement.classList.add('js');try{history.scrollRestoration='manual'}catch(e){}try{if(sessionStorage.getItem('sl-veil')&&document.referrer&&new URL(document.referrer).origin===location.origin){document.documentElement.classList.add('veil-on');sessionStorage.removeItem('sl-veil')}}catch(e){}</script>
+<script>try{var t=localStorage.getItem('sl-theme');if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}document.documentElement.classList.add('js');try{history.scrollRestoration='manual'}catch(e){}try{if(sessionStorage.getItem('sl-veil')&&document.referrer&&new URL(document.referrer).origin===location.origin){document.documentElement.classList.add('veil-on');sessionStorage.removeItem('sl-veil')}}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/pages.css">
 </head>
@@ -43,6 +43,7 @@
 <header class="top">
   <a class="top__label" href="index.html" aria-label="Summer Luijken, home" data-cursor="HOME">06. <span>/</span> Contact</a>
   <nav class="top__nav" aria-label="Main"><a href="work.html">Work</a><a href="about.html">About</a><a href="curiosities.html">Curiosities</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <button class="theme" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-cursor="THEME"><svg class="t-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M4.8 19.2l2.1-2.1M17.1 6.9l2.1-2.1"/></g></svg><svg class="t-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg></button>
   <span class="top__count" aria-hidden="true">/ 06</span>
 </header>
 <main id="main" class="contact">

@@ -13,8 +13,7 @@
 @font-face { font-family: 'Fell'; src: url('../fonts/im-fell-english-latin-400-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: 'Space Mono'; src: url('../fonts/space-mono-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Space Mono'; src: url('../fonts/space-mono-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Hand'; src: url('../fonts/caveat-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Hand'; src: url('../fonts/caveat-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Hand'; src: url('../fonts/sacramento-latin-400-normal.woff2') format('woff2'); font-weight: 400 700; font-display: swap; size-adjust: 132%; ascent-override: 78%; descent-override: 30%; line-gap-override: 0%; }
 @font-face { font-family: 'Script'; src: url('../fonts/pinyon-script-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 
 /* ---------- tokens ---------- */
@@ -23,9 +22,17 @@
   --paper-2: #E8E1D6;
   --paper-3: #FBF8F3;
   --navy: #1E2450;
-  --navy-70: rgba(30, 36, 80, .7);
-  --navy-40: rgba(30, 36, 80, .4);
-  --navy-15: rgba(30, 36, 80, .15);
+  --navy-rgb: 30, 36, 80;
+  --paper-rgb: 242, 238, 232;
+  --shadow-rgb: 30, 36, 80;
+  --block: #1E2450;
+  --on-block: #F2EEE8;
+  --card: #fffdf9;
+  --chrome-ink: #1E2450;
+  color-scheme: light;
+  --navy-70: rgba(var(--navy-rgb), .7);
+  --navy-40: rgba(var(--navy-rgb), .4);
+  --navy-15: rgba(var(--navy-rgb), .15);
   --magenta: #F1498C;
   --hot: #E5226B;
   --lav: #8F78C7;
@@ -119,12 +126,12 @@ body::before {
 .top__label { font-weight: 700; }
 .top__label span { color: var(--magenta); }
 .top__nav { display: flex; gap: clamp(14px, 2.4vw, 38px); margin-left: auto; margin-right: clamp(12px, 3vw, 54px); }
-.top__nav a { position: relative; padding: 4px 6px; margin: 0 -6px; background: rgba(242, 238, 232, .78); }
+.top__nav a { position: relative; padding: 4px 6px; margin: 0 -6px; background: rgba(var(--paper-rgb), .78); }
 .top__nav a::after { content: ''; position: absolute; left: 6px; right: 6px; bottom: 1px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
 .top__nav a:hover::after, .top__nav a[aria-current='page']::after { transform: scaleX(1); }
 .top__nav a[aria-current='page'] { font-weight: 700; color: var(--hot); }
 .top__count { color: var(--navy-70); }
-.top--solid { background: linear-gradient(var(--paper) 55%, rgba(242, 238, 232, 0)); margin: 0; left: calc(var(--frame) + 1px); right: calc(var(--frame) + 1px); top: calc(var(--frame) + 1px); padding: 14px 21px 26px; }
+.top--solid { background: linear-gradient(var(--paper) 55%, rgba(var(--paper-rgb), 0)); margin: 0; left: calc(var(--frame) + 1px); right: calc(var(--frame) + 1px); top: calc(var(--frame) + 1px); padding: 14px 21px 26px; }
 
 /* ---------- custom cursor (only when JS says so) ---------- */
 .cursor { position: fixed; left: 0; top: 0; z-index: 500; pointer-events: none; opacity: 0; transition: opacity .3s; }
@@ -166,7 +173,7 @@ html.veil-on .veil { pointer-events: auto; }
   padding: .2em .12em .24em; margin: -.2em -.12em -.24em;
 }
 .print--2ink { text-shadow: .045em .025em 0 rgba(241, 73, 140, .55); }
-.print--2ink-navy { text-shadow: .045em .025em 0 rgba(30, 36, 80, .5); }
+.print--2ink-navy { text-shadow: .045em .025em 0 rgba(var(--shadow-rgb), .5); }
 
 /* ---------- ornaments ---------- */
 .star { display: block; width: 1em; height: 1em; fill: currentColor; flex: none; }
@@ -197,21 +204,21 @@ html.veil-on .veil { pointer-events: auto; }
 .note b { font-weight: 700; color: var(--hot); }
 .arrow { width: 5em; height: 3em; fill: none; stroke: var(--navy-70); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
-.cutout { filter: drop-shadow(1px 5px 5px rgba(30, 36, 80, .28)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
-.cutout--soft { filter: drop-shadow(0 10px 14px rgba(30, 36, 80, .22)); }
+.cutout { filter: drop-shadow(1px 5px 5px rgba(var(--shadow-rgb), .28)); pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.cutout--soft { filter: drop-shadow(0 10px 14px rgba(var(--shadow-rgb), .22)); }
 .tape { position: absolute; width: 8.5em; height: auto; pointer-events: none; z-index: 5; mix-blend-mode: multiply; opacity: .92; }
 
-.card-paper { background: var(--paper-3) url('../img/tex/paper.jpg'); background-size: 520px; box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset, 0 2px 3px rgba(30, 36, 80, .18), 0 14px 24px -10px rgba(30, 36, 80, .35); }
+.card-paper { background: var(--paper-3) url('../img/tex/paper.jpg'); background-size: 520px; box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset, 0 2px 3px rgba(var(--shadow-rgb), .18), 0 14px 24px -10px rgba(var(--shadow-rgb), .35); }
 
 /* photo slot: designed fallback, real photo drops in on top when the file exists */
 .slot { position: relative; overflow: hidden; background: var(--paper-2); color: var(--navy-70); }
 .slot::before { content: attr(data-label); position: absolute; inset: 0; display: grid; place-items: center; padding: 14px; text-align: center; font: 400 10px/1.5 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; background:
-  repeating-linear-gradient(135deg, transparent 0 9px, rgba(30, 36, 80, .06) 9px 10px); }
+  repeating-linear-gradient(135deg, transparent 0 9px, rgba(var(--navy-rgb), .06) 9px 10px); }
 .slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .slot.is-art::before { display: none; }
 
 /* chrome plate + pill button */
-.plate { display: inline-block; background: var(--chrome); color: var(--navy); padding: .5em 1em .42em; border: 1px solid rgba(30, 36, 80, .55); border-radius: 3px; box-shadow: 0 1px 0 #fff inset, 0 -1px 0 rgba(30, 36, 80, .25) inset, 0 3px 8px rgba(30, 36, 80, .25); font: 700 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; }
+.plate { display: inline-block; background: var(--chrome); color: var(--chrome-ink); padding: .5em 1em .42em; border: 1px solid rgba(var(--shadow-rgb), .55); border-radius: 3px; box-shadow: 0 1px 0 #fff inset, 0 -1px 0 rgba(var(--shadow-rgb), .25) inset, 0 3px 8px rgba(var(--shadow-rgb), .25); font: 700 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; }
 .pill {
   position: relative; display: inline-flex; align-items: center; gap: .9em; padding: .85em 1.5em .8em; border: 1.5px solid var(--navy); border-radius: 999px; overflow: hidden;
   font: 700 11.5px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; background: transparent; transition: color .35s var(--ease), transform .35s var(--ease);
@@ -248,3 +255,51 @@ html.js .rv.is-in { opacity: 1; }
   .print-fx::after, .tw, .spin-slow { animation: none !important; }
   .veil { display: none; }
 }
+
+/* ==========================================================================
+   THEME : light is the default; dark swaps the ink and paper.
+   The names stay (navy = ink, paper = ground) so every rule keeps working.
+   ========================================================================== */
+html[data-theme='dark'] {
+  --paper: #141630;
+  --paper-2: #1C2042;
+  --paper-3: #1F2348;
+  --navy: #ECE7F6;
+  --navy-rgb: 236, 231, 246;
+  --paper-rgb: 20, 22, 48;
+  --shadow-rgb: 0, 0, 0;
+  --hot: #FF5C9C;
+  --lav: #A892E0;
+  --block: #1D2260;
+  --on-block: #F2EEE8;
+  --card: #E9E3F1;
+  color-scheme: dark;
+}
+html[data-theme='dark'] body { background-blend-mode: multiply; }
+html[data-theme='dark'] body::before {
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 50%, rgba(0, 0, 0, .35) 100%),
+    radial-gradient(40% 30% at 8% 92%, rgba(241, 73, 140, .10), transparent 70%),
+    radial-gradient(35% 28% at 96% 8%, rgba(143, 120, 199, .14), transparent 70%);
+  mix-blend-mode: normal;
+}
+html[data-theme='dark'] .print-fx { mix-blend-mode: screen; opacity: .1; }
+html[data-theme='dark'] .print-fx::before, html[data-theme='dark'] .print-fx::after { filter: invert(1); }
+html[data-theme='dark'] .tape { mix-blend-mode: normal; opacity: .78; }
+html[data-theme='dark'] .card-paper, html[data-theme='dark'] .dr__body, html[data-theme='dark'] .pad__cv { background-blend-mode: multiply; }
+html[data-theme='dark'] .card-paper { box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 2px 3px rgba(0, 0, 0, .4), 0 14px 24px -10px rgba(0, 0, 0, .6); }
+/* navy line art becomes pale line art; dark florals get a soft edge light so they stay visible */
+html[data-theme='dark'] img[src*='-navy'] { filter: invert(.92) hue-rotate(180deg); }
+html[data-theme='dark'] img[src*='/cut/'] { filter: brightness(1.45) contrast(.95) drop-shadow(0 0 10px rgba(190, 170, 255, .28)); }
+html[data-theme='dark'] .slot img, html[data-theme='dark'] .fig img, html[data-theme='dark'] .fit img { filter: none; }
+
+/* the switch */
+.theme { position: relative; width: 30px; height: 30px; flex: none; display: grid; place-items: center; border: 1.5px solid var(--navy); border-radius: 50%; background: rgba(var(--paper-rgb), .78); color: var(--navy); transition: transform .5s var(--ease), background .3s, color .3s; }
+.theme:hover { transform: rotate(40deg) scale(1.08); background: var(--navy); color: var(--paper); }
+.theme svg { width: 15px; height: 15px; fill: currentColor; }
+.theme .t-moon { display: none; }
+html[data-theme='dark'] .theme .t-sun { display: none; }
+html[data-theme='dark'] .theme .t-moon { display: block; }
+.top__count { margin-left: 12px; }
+.top .theme { margin-left: 0; }
+@media (max-width: 760px) { .theme { margin-left: auto; } .top__count { margin-left: 10px; } }
