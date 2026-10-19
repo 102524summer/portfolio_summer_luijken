@@ -113,12 +113,13 @@
   var cv = $('[data-pad]');
   if (cv) {
     var cx = cv.getContext('2d'), col = '#1E2450', down = false, lx = 0, ly = 0;
+    function C() { return (col.toUpperCase() === '#1E2450' && document.documentElement.getAttribute('data-theme') === 'dark') ? '#ECE7F6' : col; }
     cx.lineCap = 'round'; cx.lineJoin = 'round';
     function pos(e) { var r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * cv.width / r.width, (e.clientY - r.top) * cv.height / r.height]; }
-    cv.addEventListener('pointerdown', function (e) { down = true; var p = pos(e); lx = p[0]; ly = p[1]; cv.setPointerCapture(e.pointerId); cx.fillStyle = col; cx.beginPath(); cx.arc(lx, ly, 2.2, 0, 7); cx.fill(); });
+    cv.addEventListener('pointerdown', function (e) { down = true; var p = pos(e); lx = p[0]; ly = p[1]; cv.setPointerCapture(e.pointerId); cx.fillStyle = C(); cx.beginPath(); cx.arc(lx, ly, 2.2, 0, 7); cx.fill(); });
     cv.addEventListener('pointermove', function (e) {
       if (!down) return; var p = pos(e), sp = Math.hypot(p[0] - lx, p[1] - ly);
-      cx.strokeStyle = col; cx.lineWidth = Math.max(1.5, 6 - sp * .12); cx.beginPath(); cx.moveTo(lx, ly); cx.lineTo(p[0], p[1]); cx.stroke(); lx = p[0]; ly = p[1];
+      cx.strokeStyle = C(); cx.lineWidth = Math.max(1.5, 6 - sp * .12); cx.beginPath(); cx.moveTo(lx, ly); cx.lineTo(p[0], p[1]); cx.stroke(); lx = p[0]; ly = p[1];
     });
     ['pointerup', 'pointercancel'].forEach(function (n) { cv.addEventListener(n, function () { down = false; }); });
     $$('[data-ink]').forEach(function (b) { b.addEventListener('click', function () { col = b.getAttribute('data-ink'); $$('[data-ink]').forEach(function (o) { o.setAttribute('aria-pressed', o === b); }); }); });
